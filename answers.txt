@@ -17,6 +17,10 @@ being used.  In addition, comments outside the for and if loops should be added 
 
 3. Are there places the code could be more concise or clear?
 
+
+One example is the equal method in the disk class.  There was an if else statement that can be replaced
+with one return.
+
 4. How would test this code for bugs?
 
 I would test this code for bugs by creating a unitTest.  I would generate certain inputs, which represent
@@ -45,6 +49,29 @@ full of disks.  We could provide a test case of a priority queue we generate and
 console is desired.  This is better than the "test case" in #5 because it does not rely on the rest of the 
 code working correctly to check this part of the code.
  
+8. What code smells can you find? 
 
+There is repeated code.  In addition there are poor choices of variable names; they are not descriptive 
+enough to help the reader.
 
+9. What suggestions does this code make about how someone would extend it in the future to compare the 
+performance of a wider variety of algorithms?
+
+The code could add methods for all the algorithms that take a priority queue as input.  Thus, all the is
+needed to add a new algorithm is a new function, with its algorithm name as its name.
+
+10. What dependencies are there in different parts of the code?
+
+In the Bins class there is an instance of a Disk object.
+
+11. How easy was it to identify these dependencies?
+
+It is relatively easy to find the object/class dependencies.  There is possibly more difficult to identify
+dependencies that we did not have proper time to investigate fully.
+
+12. Can you clarify how you would remove those dependencies?
+
+It would be difficult to remove the disk object from the bin class (We think it is there for breaking up 
+into objects with more specific purposes).  We would suggest ensuring the Disk class is working before
+making major dependencies in the Bin class. 
 

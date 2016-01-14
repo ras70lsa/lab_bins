@@ -28,6 +28,9 @@ public class Bins {
         return results;
     }
 
+    /*
+     * Method for displaying information to user given properly stored disk
+     */
     private void giveOutput(PriorityQueue<Disk> disks) {
     	
     	System.out.println("number of pq used: " + disks.size());
@@ -38,9 +41,15 @@ public class Bins {
 
     }
     
-    private PriorityQueue<Disk> inOrder(List<Integer> data) {
+    /*
+     * Stores the files to the disk using the inOrder method
+     * Calculating the size in this step was left to eliminate using an algorithm to do it separately
+     * (possibly the size should have been done separately)
+     */
+    
+    private PriorityQueue<Disk> inOrder(String MethodType, List<Integer> data) {
     	
-
+    	System.out.println(MethodType);
         PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
     	pq.add(new Disk(0));
 
@@ -66,26 +75,13 @@ public class Bins {
         return pq;
     }
     
-    /**
-     * The main program.
+    /*
+     * Stores the files to the disk using the decreasingOrder method
      */
-    public static void main (String args[]) {
-        Bins b = new Bins();
-        Scanner input = new Scanner(Bins.class.getClassLoader().getResourceAsStream(DATA_FILE));
-        List<Integer> data = b.readData(input);
-
-        
-        PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
-        System.out.println("worst-fit method");
-        b.giveOutput(b.inOrder(data));
-        
-//        System.out.println("number of pq used: " + pq.size());
-//        while (!pq.isEmpty()) {
-//            System.out.println(pq.poll());
-//        }
-//        System.out.println();
-
-        Collections.sort(data, Collections.reverseOrder());
+    
+    private PriorityQueue<Disk> decreasingOrder(String str, List<Integer> data) {
+    	
+    	 PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
         pq.add(new Disk(0));
 
         int diskId = 1;
@@ -104,9 +100,27 @@ public class Bins {
         }
 
         System.out.println();
-        System.out.println("worst-fit decreasing method");
-      
-        b.giveOutput(pq);
+        return pq;
+    }
+    /**
+     * The main program.
+     */
+    public static void main (String args[]) {
+        Bins b = new Bins();
+        Scanner input = new Scanner(Bins.class.getClassLoader().getResourceAsStream(DATA_FILE));
+        List<Integer> data = b.readData(input);
+
+        //In Order method
+        
+        PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
+        b.giveOutput(b.inOrder("worst-fit method", data));
+        
+
+        //Sort list
+        Collections.sort(data, Collections.reverseOrder());
+        
+        //Decreasing Order method
+        b.giveOutput(b.decreasingOrder("worst-fit decreasing method", data));
       
     }
 }
