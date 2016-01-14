@@ -1,1 +1,50 @@
-Ryan
+Ryan St.Pierre and Joseph Lilien 
+
+1. What pieces of code help versus obscure your understanding of the algorithm? 
+
+One piece of the code that helps our understanding is the comment above the readData method.  
+In addition, the name of this method is in itself helpful because it is descriptive to what the 
+method accomplishes.  In contrast, the main method obscures our understanding of the code.
+There are algorithms run in this main method with no comments.  The outside comment of the main 
+method does nothing to aid our understanding.  In addition, the name of the variables are not 
+descriptive.  These variable names are short, such as 'd' and 'pq', or similar repeated variable 
+names such as 'd' and 'd2'.
+
+2. What comments might be helpful within the code?
+
+Comments at different points in the code that distinguish the different types of bin storage methods
+being used.  In addition, comments outside the for and if loops should be added to aid the reader.
+
+3. Are there places the code could be more concise or clear?
+
+4. How would test this code for bugs?
+
+I would test this code for bugs by creating a unitTest.  I would generate certain inputs, which represent
+a variety of edge cases, and ensure the code is generating the correct output.  We would create different 
+tests for the different points in the algorithm to better pinpoint the bug.  Another alternative to a 
+unitTest is creating text files with know expected output and checking the codes output in respect to this 
+expected output.
+
+5. Give a specific example of a "test case" as the code is currently written.
+
+A "test case" would be inputting a specific text file in which we already know the desired output.  Without
+more methods it would be more difficult to create test cases that identify specific errors in specific points
+of the algorithm.
+
+6. What additional functions may be helpful?
+
+Additional functions that may be helpful are functions that break up the two methods.  Thus, test cases 
+could be given to these functions directly to test each method (in-order vs decreasing order).  In 
+addition a function that displayed output would be helpful to test the output of this method by giving 
+it a parameter as input.
+
+7. Give a specific example of a "test case" for you new function.
+
+Reference the function 'giveOutput'.  This function outputs the data for the user, given a priority queue
+full of disks.  We could provide a test case of a priority queue we generate and ensure the output to the 
+console is desired.  This is better than the "test case" in #5 because it does not rely on the rest of the 
+code working correctly to check this part of the code.
+ 
+
+
+

@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Bins {
 	
-	//Adding comment
+	
     public static final String DATA_FILE = "example.txt";
 
     /**
@@ -28,16 +28,21 @@ public class Bins {
         return results;
     }
 
-    /**
-     * The main program.
-     */
-    public static void main (String args[]) {
-        Bins b = new Bins();
-        Scanner input = new Scanner(Bins.class.getClassLoader().getResourceAsStream(DATA_FILE));
-        List<Integer> data = b.readData(input);
+    private void giveOutput(PriorityQueue<Disk> disks) {
+    	
+    	System.out.println("number of pq used: " + disks.size());
+        while (!disks.isEmpty()) {
+            System.out.println(disks.poll());
+        }
+        System.out.println();
+
+    }
+    
+    private PriorityQueue<Disk> inOrder(List<Integer> data) {
+    	
 
         PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
-        pq.add(new Disk(0));
+    	pq.add(new Disk(0));
 
         int diskId = 1;
         int total = 0;
@@ -58,17 +63,32 @@ public class Bins {
 
         System.out.println("total size = " + total / 1000000.0 + "GB");
         System.out.println();
+        return pq;
+    }
+    
+    /**
+     * The main program.
+     */
+    public static void main (String args[]) {
+        Bins b = new Bins();
+        Scanner input = new Scanner(Bins.class.getClassLoader().getResourceAsStream(DATA_FILE));
+        List<Integer> data = b.readData(input);
+
+        
+        PriorityQueue<Disk> pq = new PriorityQueue<Disk>();
         System.out.println("worst-fit method");
-        System.out.println("number of pq used: " + pq.size());
-        while (!pq.isEmpty()) {
-            System.out.println(pq.poll());
-        }
-        System.out.println();
+        b.giveOutput(b.inOrder(data));
+        
+//        System.out.println("number of pq used: " + pq.size());
+//        while (!pq.isEmpty()) {
+//            System.out.println(pq.poll());
+//        }
+//        System.out.println();
 
         Collections.sort(data, Collections.reverseOrder());
         pq.add(new Disk(0));
 
-        diskId = 1;
+        int diskId = 1;
         for (Integer size : data) {
             Disk d = pq.peek();
             if (d.freeSpace() >= size) {
@@ -85,10 +105,8 @@ public class Bins {
 
         System.out.println();
         System.out.println("worst-fit decreasing method");
-        System.out.println("number of pq used: " + pq.size());
-        while (!pq.isEmpty()) {
-            System.out.println(pq.poll());
-        }
-        System.out.println();
+      
+        b.giveOutput(pq);
+      
     }
 }
